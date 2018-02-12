@@ -1,0 +1,178 @@
+#login-form, #register-form, #register-form-student, #login-form-student {
+	margin-top: 5%;
+	background-color: #ffffff;
+	border-radius: 15px;
+	opacity: 0.9;
+	padding: 20px;
+}
+
+
+
+
+.row {
+    margin: 0;
+}
+
+.showBack {
+    background: url('../images/black.jpg') center center no-repeat;
+    content: "";
+    /*position: fixed;*/
+    /*display: block;*/
+    background-size: cover;
+    /*width: 100%;*/
+    /*height: 100%;*/
+}
+
+
+.pic{
+    background: url('../images/tree.jpg') center center no-repeat;
+    content: "";
+    position: fixed;
+    display: block;
+    background-size:cover;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+}
+
+
+.content:before {
+    background: url('../images/header-bg.jpg') center center no-repeat;
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    display: block;
+    background-size:cover;
+    width: 100%;
+    height: 100%;
+    
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
+}
+
+.content {
+    overflow: hidden;
+}
+
+#login-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, .7);
+    padding: 15px;
+    text-align: center;
+    background-color: #6b6e72;
+    color: snow;
+}
+
+#login-footer a {
+	color: snow;
+	text-decoration: underline;
+}
+
+.error {
+    padding: 10px;
+    background-color: #EF5350;
+    color: snow;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 15px;
+}
+
+.success {
+    padding: 10px;
+    background-color: #55A556;
+    color: snow;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 15px;
+}
+
+.navbar {
+	margin: 0;
+	background-color: #6b6e72;
+	border-radius: 0px;
+	padding-left: 2%;
+	padding-right: 2%;
+}
+
+.container-fluid {
+	padding: 0;
+	margin: 0;
+}
+
+.navbar-brand {
+	color: snow;
+    font-size: 1.45em;
+}
+
+.navbar-brand:hover {
+	color: snow;
+}
+
+.navbar-nav>li>a {
+	color: snow;
+    font-weight: 450;
+    font-size: 1.1em;
+}
+
+.navbar-nav>li>a:hover {
+	color: #689F38;
+	background-color: snow;
+    cursor: pointer;
+}
+
+.glyphicon {
+    color: snow;
+}
+
+.glyphicon-th {
+    color: #009688;
+}
+
+.glyphicon-remove {
+    color: #F44336;
+    cursor: pointer;
+    position: relative;
+    float: right;
+    margin-right: 30px;
+}
+
+.student-name {
+    margin: 0;
+    margin-top: 4%;
+    padding: 10px 0px;
+    text-align: center;
+    border-bottom: 2px solid #333333;
+    background-color: #c8cace;
+    cursor: default;
+}
+
+.student-name:hover {
+    background-color: #9a9ca0;
+}
+
+.student-content {
+    margin-top: 2%;
+
+}
+
+#search-student-title {
+    text-align: center;
+}
+
+h4{
+    text-align: center;
+}
+
