@@ -24,6 +24,7 @@ class DatabaseConnector
         $this->password = $password;
         $this->database = $database;
         $this->server = $server;
+        $this->openConnection();
     }
 
     /**
@@ -58,7 +59,7 @@ class DatabaseConnector
      */
     public function singleSelect($sql, $requirement)
     {
-        $this->openConnection();
+
         $statement = $this->connection->prepare($sql);
         $statement->execute([$requirement]);
 
@@ -71,7 +72,7 @@ class DatabaseConnector
     public function insertUserStudent($sql, $parameters){
         $result=$this->singleSelect("SELECT * FROM user_student WHERE email= ?", $parameters[2]);
         if($result==null){
-            $this->openConnection();
+
             $statement = $this->connection->prepare($sql);
             $statement->execute([$parameters[0], $parameters[1], $parameters[2]]);
             $this->closeConnection();
@@ -90,7 +91,7 @@ class DatabaseConnector
         // if result is null, than we don't have a user in database with that email, so it is ok
         // to insert user
         if ($result == null) {
-            $this->openConnection();
+
             $statement = $this->connection->prepare($sql);
             $statement->execute([$parameters[0], $parameters[1], $parameters[2], $parameters[3]]);
             $this->closeConnection();
@@ -111,7 +112,7 @@ class DatabaseConnector
      */
     public function multipleSelect($sql)
     {
-        $this->openConnection();
+
         $statement = $this->connection->prepare($sql);
         $statement->execute();
 
@@ -129,7 +130,7 @@ class DatabaseConnector
      */
     public function partialMultipleSelect($sql, $text)
     {
-        $this->openConnection();
+
         $statement = $this->connection->prepare($sql);
         $statement->execute([$text]);
 
@@ -141,7 +142,7 @@ class DatabaseConnector
 
     public function insertFile($sql, $parameters)
     {
-        $this->openConnection();
+
         $statement = $this->connection->prepare($sql);
         $statement->execute([$parameters[0], $parameters[1], $parameters[2], $parameters[3]]);
         $this->closeConnection();
@@ -150,7 +151,7 @@ class DatabaseConnector
 
     public function insertStudent($sql, $parameters)
     {
-        $this->openConnection();
+
         $statement = $this->connection->prepare($sql);
         $statement->execute([$parameters[0], $parameters[1], $parameters[2], $parameters[3], $parameters[4],
             $parameters[5]]);
@@ -160,7 +161,7 @@ class DatabaseConnector
 
     public function deleteStudent($sql, $id)
     {
-        $this->openConnection();
+
         $statement = $this->connection->prepare($sql);
         $statement->execute([$id]);
         $this->closeConnection();
@@ -168,7 +169,7 @@ class DatabaseConnector
 
     public function updateStudent($sql, $parameters)
     {
-        $this->openConnection();
+
         $statement = $this->connection->prepare($sql);
         $statement->execute([$parameters[0],
             $parameters[1]]);
@@ -176,7 +177,7 @@ class DatabaseConnector
     }
     public function getNumber($sql, $grade)
     {
-        $this->openConnection();
+
         $statement = $this->connection->prepare($sql);
         $statement->execute([$grade]);
         $result = $statement->fetch();

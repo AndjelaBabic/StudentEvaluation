@@ -27,8 +27,8 @@ $columns = array(
     array( 'db' => 'surname',   'dt' => 2 ),
     array( 'db' => 'student_id',     'dt' => 3 ),
     array( 'db' => 'year',     'dt' => 4 ),
-    array( 'db' => 'assignment_status', 'dt' => 5 ),
-    array( 'db' => 'grade', 'dt' => 6),
+//    array( 'db' => 'assignment_status', 'dt' => 5 ),
+    array( 'db' => 'grade', 'dt' => 5),
 );
 
 // SQL server connection information

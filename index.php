@@ -111,7 +111,7 @@
             { "title": "Surname" },
             { "title": "Student id" },
             { "title": "Year" },
-            { "title": "Assignment status" },
+//            { "title": "Assignment status" },
             { "title": "Grade"}
         ],
         "ajax": "dataTable.php",
