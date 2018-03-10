@@ -22,7 +22,7 @@ class FilesRepository
 
     public function __construct()
     {
-        $this->dbConnector = new DatabaseConnector("root", "", "student_base", "localhost");
+        $this->dbConnector = DatabaseConnector::getInstance();
     }
 
     public function insertFile($name, $type, $size, $id_student)

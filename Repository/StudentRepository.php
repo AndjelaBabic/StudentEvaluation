@@ -22,7 +22,7 @@ class StudentRepository
 
     public function __construct()
     {
-        $this->dbConnector = new DatabaseConnector("root", "", "student_base", "localhost");
+        $this->dbConnector = DatabaseConnector::getInstance();
     }
 
 
@@ -89,7 +89,11 @@ class StudentRepository
 
     public function getNumberWithThisGrade($grade)
     {
-        $sql = "SELECT COUNT(id) FROM `student` WHERE grade=?";
+        if($grade===null){
+            $sql = "SELECT COUNT(id) FROM `student` WHERE grade IS NULL";
+        } else{
+            $sql = "SELECT COUNT(id) FROM `student` WHERE grade=?";
+        }
         $result = $this->dbConnector->getNumber($sql, $grade);
         // Array ( [COUNT(id)] => 0 ) u ovom obliku je svaki koji baza vrati
         return $result['COUNT(id)'];

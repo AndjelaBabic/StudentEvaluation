@@ -11,11 +11,7 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
                 <!-- u zavisnosti od toga ko je ovde razlicito -->
-                <?php if(isset($_SESSION['login_user'])){ ?>
                 <li><a href="Controllers/addStudentController.php"> Insert student </a></li>
-                <?php } else {?>
-                <li><a href="Controllers/addSubmitController.php"> Submit your work </a></li>
-                <?php }?>
                 <li><a href="Controllers/showStudentsController.php"> Show all students </a></li>
                 <li><a href="Controllers/addSucessfullController.php">Sucessfull students</a></li>
                 <li><a id="logout-href" href="Controllers/logoutController.php"><span class="glyphicon glyphicon-log-out"></span>

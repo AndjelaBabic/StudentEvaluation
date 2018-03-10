@@ -10,6 +10,10 @@ use Repository\FilesRepository as FilesRepository;
 
 $filesRepos = new FilesRepository();
 
+
+
+
+if($_POST['btn-upload']) {
     if (is_uploaded_file($_FILES['my-file']['tmp_name']) && $_FILES['my-file']['error'] == 0) {
         $path = '../uploads/' . $_FILES['my-file']['name'];
         if (!file_exists($path)) {
@@ -19,7 +23,7 @@ $filesRepos = new FilesRepository();
                 $result = $filesRepos->insertFile($myFile['name'], $myFile['type'], $myFile['size'], $id_student);
 
                 $file = $filesRepos->getFileByID($id_student);
-                $_SESSION['file'] =  $file->getName();
+                $_SESSION['file'] = $file->getName();
                 $_SESSION['upload-success'] = "The file was uploaded successfully.";
 
             } else {
@@ -36,6 +40,7 @@ $filesRepos = new FilesRepository();
 
     header("Location: ../index.php");
 
+}
 
 //    $files = scandir("uploads");
 //    for ($a = 2; $a < count($files); $a++){

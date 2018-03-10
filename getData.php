@@ -16,12 +16,11 @@ $studentRepository = new StudentRepository();
 
 $array = $studentRepository->getArrayStats();
 
-
 $data = array();
 // Structure data for google visualization API
 $data['cols'] = array(
     array('id' => '1', 'label' => 'Grade', 'type' => 'string'),
-    array('id' => '2', 'label' => 'Number', 'type' => 'number'),
+    array('id' => '2', 'label' => 'Number of students', 'type' => 'number'),
 );
 
 $rows = array();
@@ -33,8 +32,6 @@ foreach ($array as $key => $value) {
     $rows[] = array('c' => $temp);
     //Values
 }
-
-
 $data['rows'] = $rows;
 
 echo json_encode($data, true);

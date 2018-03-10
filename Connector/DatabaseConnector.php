@@ -11,14 +11,15 @@ class DatabaseConnector
     private $database;
     private $server;
     private $connection;
-//1. da se pisu sve greske
+    private static $instance;
+
     private $opt = [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
         PDO::ATTR_EMULATE_PREPARES => false,
     ];
 
-    public function __construct($userName, $password, $database, $server)
+    private function __construct($userName, $password, $database, $server)
     {
         $this->userName = $userName;
         $this->password = $password;
@@ -27,11 +28,17 @@ class DatabaseConnector
         $this->openConnection();
     }
 
+    public static function getInstance(){
+        if(empty(self::$instance)){
+            self::$instance = new DatabaseConnector("root", "", "student_base", "localhost");
+        }
+        return self::$instance;
+    }
+
     /**
      * [Open new Connection]
      * @return [type] [description]
      */
-    //PDO-rad sa bazom, za oo programiranje
     public function openConnection()
     {
         try {
@@ -69,21 +76,19 @@ class DatabaseConnector
         return $result;
     }
 
-    public function insertUserStudent($sql, $parameters){
-        $result=$this->singleSelect("SELECT * FROM user_student WHERE email= ?", $parameters[2]);
-        if($result==null){
+    public function insertUserStudent($sql, $parameters)
+    {
+        $result = $this->singleSelect("SELECT * FROM user_student WHERE email= ?", $parameters[2]);
+        if ($result == null) {
 
             $statement = $this->connection->prepare($sql);
             $statement->execute([$parameters[0], $parameters[1], $parameters[2]]);
             $this->closeConnection();
             return true;
-        }else{
+        } else {
             return false;
         }
-
-
     }
-
 
     public function insertUser($sql, $parameters)
     {
@@ -175,13 +180,78 @@ class DatabaseConnector
             $parameters[1]]);
         $this->closeConnection();
     }
+
     public function getNumber($sql, $grade)
     {
 
         $statement = $this->connection->prepare($sql);
-        $statement->execute([$grade]);
+        if($grade == null){
+            $statement->execute();
+        } else{
+            $statement->execute([$grade]);
+        }
         $result = $statement->fetch();
         $this->closeConnection();
         return $result;
     }
+
+    function select($table = "student", $columns = '*', $join_table = " ", $join_key1 = " ", $join_key2 = " ", $where = null, $order = null)
+    {
+        $q = 'SELECT ' . $columns . ' FROM ' . $table;
+        if ($join_table != null)
+            $q .= ' JOIN ' . $join_table . ' ON ' . $table . '.' . $join_key1 . ' = ' . $join_table . '.' . $join_key2;
+        if ($where != null)
+            $q .= ' WHERE ' . $where;
+        if ($order != null)
+            $q .= ' ORDER BY ' . $order;
+        $statement = $this->connection->prepare($q);
+        $statement->execute();
+
+        $result = $statement->fetchAll();
+        $this->closeConnection();
+        return $result;
+
+    }
+
+    function update($table, $id, $keys, $values) {
+        $update = "UPDATE ". $table ." SET ". $keys[0] ." = '". $values[0] ."' WHERE id=". $id;
+        if($this->ExecuteQuery($update)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    function delete($table = "student", $keys, $values) {
+        $delete = "DELETE FROM ". $table ." WHERE ". $keys[0] ." = '". $values[0] ."'";
+        if ($this->ExecuteQuery($delete))
+            return true;
+        else
+            return false;
+    }
+
+    function insert($table = "student", $rows = "id, name, surname, student_id, year, assignment_status, grade", $values) {
+        $query_values = implode(',',$values);
+        $insert = 'INSERT INTO '. $table;
+        if($rows != null) {
+            $insert .= ' ('. $rows .')';
+        }
+        $insert .= ' VALUES ('. $query_values .')';
+
+        if($this->ExecuteQuery($insert)){
+            return true;
+        } else{
+            return false;
+        }
+    }
+
+    function ExecuteQuery($sql)
+    {
+        $statement = $this->connection->prepare($sql);
+        $statement->execute();
+        $this->closeConnection();
+        return true;
+    }
+
+
 }

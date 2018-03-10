@@ -66,5 +66,5 @@ if (isset($_SESSION['register']))
 </div>
 
 <footer id="login-footer">
-    &copy; <a href="">Student evaluation</a> 2017. All rights reserved.
+    &copy; <a href="">Student evaluation</a> 2018. All rights reserved.
 </footer>

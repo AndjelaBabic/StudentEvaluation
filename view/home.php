@@ -1,3 +1,6 @@
+<?php
+include "Controllers/serverControllerGETStudent.php";
+?>
 <nav class="navbar">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -23,7 +26,7 @@
 <div class="row pic">
     <br> <br>
     <div class="col-md-2"></div>
-    <form method="POST" action="Controllers/createStudentController.php" class="col-md-6 col-md-offset-3">
+    <form method="POST" action="Controllers/serverControllerPOST.php" class="col-md-6 col-md-offset-3">
         <?php
         if (isset($_SESSION['create-success'])) {
             echo '<p class="success">' . $_SESSION['create-success'] . '</p>';
@@ -73,6 +76,43 @@
 <!--            <input id="grade" type="text" name="grade" class="form-control">-->
 <!--        </div>-->
         <button name="create-student" type="submit" class="btn btn-info btn-block">Insert student</button>
+        <br>
     </form>
+<!--    <div class="col-md-6"></div>-->
+    <div class="form-group col-md-6 col-md-offset-5">
+
+        <table id="listaProizvoda" class="table-condensed">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Student_id</th>
+                <th>Year</th>
+                <th>Assignment status</th>
+                <th>Grade</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody id="ajaxPodaci">
+            <?php
+            foreach($json_objekat1->student as $student) {
+                echo "<tr>
+                     <td> $student->id  </td>
+                    <td>$student->name</td>
+                    <td>$student->surname</td>
+                    <td>$student->student_id</td>
+                    <td>$student->year</td>
+                    <td>$student->assignment_status</td>
+                    <td>$student->grade</td>
+                    <td><a href='Controllers/serverControllerDELETE.php?id=".  $student->id  ."'><button class='btn btn-default'>Delete</button></a></td>
+                       </tr>";
+            }
+            ?>
+            </tbody>
+        </table>
+
+
+    </div>
 </div>
 

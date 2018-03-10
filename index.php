@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="static/css/main.css">
 
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
 
 
 </head>
@@ -34,6 +35,7 @@
 		
 	<!-- -->
 		<div id="login-page"></div>
+
 		<script type="text/javascript">
 			var login = true; // prva stvar bude login
 		</script>
@@ -48,11 +50,15 @@
         if(isset($_SESSION['login_user-student'])) {
 
             if(isset($_SESSION['submit'])) {
-                require_once "view/submit.php";
+              //  require_once "view/submit.php";
+                ?>
+
+                <?php
+                require_once "view/submit2.php";
             }
             if(!isset($_SESSION['show-student']) && !isset($_SESSION['submit'])  && !isset($_SESSION['sucessfull'])) {
                 //  require_once "Controllers/loginController.php";
-                require_once "view/submit.php";
+                require_once "view/submit2.php";
             }
 
         } else{
@@ -78,22 +84,27 @@
 <!-- google chart -->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript" src="static/js/chart.js"></script>
-
 <!-- Tabela -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+<!-- word to pdf -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
 
-<!--Data tables -->
-<!--<script src="DataTables-1.10.4/media/js/jquery.js"></script>-->
-<!--<script src="DataTables-1.10.4/media/js/jquery.dataTables.min.js"></script>-->
+
 
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<!-- My Scripts -->
-<script type="text/javascript" src=static/js/main.js></script>
+
+
 <!-- Bootstrap JS -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="static/download/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+
+
+<!-- My Scripts -->
+<script type="text/javascript" src=static/js/main.js></script>
+<script type="text/javascript" src="static/js/wikipedia.js"></script>
 
 <!-- Data tables -->
 <link rel="stylesheet" type="text/css" href="DataTables-1.10.4/media/css/jquery.dataTables.min.css" />
@@ -114,6 +125,7 @@
 //            { "title": "Assignment status" },
             { "title": "Grade"}
         ],
+
         "ajax": "dataTable.php",
         "processing": true,
         "serverSide": true

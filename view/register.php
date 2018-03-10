@@ -4,8 +4,8 @@ $_SESSION['register'] = true;
 ?>
     <div class="row content">
 
-        <div class="col-md-6">
-            <form id="register-form" method="POST" action="Controllers/registerController.php" class="col-md-8 col-md-offset-2">
+        <div class="col-md-6" >
+            <form id="register-form"  method="POST" action="Controllers/registerController.php" class="col-md-8 col-md-offset-2">
                 <?php
                 if (isset($_SESSION['register-error']))
                     echo '<p class="error">' . $_SESSION['register-error'] . '</p>';
@@ -13,6 +13,7 @@ $_SESSION['register'] = true;
                 if (isset($_SESSION['register-success']))
                     echo '<p class="success">' . $_SESSION['register-success'] . '</p>';
                 ?>
+
                 <h4 id="tittle" > Sign up as a professor</h4>
                 <div class="form-group">
                     <label for="name">Name:</label>
@@ -40,7 +41,9 @@ $_SESSION['register'] = true;
                            placeholder="Repeat password...">
                 </div>
                 <button name="register" type="submit" class="btn btn-info">Register</button>
+
             </form>
+
         </div>
 
         <div class="col-md-6">
@@ -80,7 +83,7 @@ $_SESSION['register'] = true;
 
     </div>
     <footer id="login-footer">
-        &copy; <a href="">Student evaluation</a> 2017. All rights reserved.
+        &copy; <a href="">Student evaluation</a> 2018. All rights reserved.
     </footer>
 <?php
 if (isset($_SESSION['register-error']))

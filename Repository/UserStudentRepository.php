@@ -21,7 +21,7 @@ class UserStudentRepository
     private $dbConnector;
 
     public function __construct() {
-        $this->dbConnector = new DatabaseConnector("root", "", "student_base", "localhost");
+        $this->dbConnector = DatabaseConnector::getInstance();
     }
 
 
